@@ -1,5 +1,5 @@
 import "./index.scss";
-import { useState } from "react";
+import {useRef, useState} from "react";
 import FirstFloor from "../floor/firstFloor";
 
 function Map() {
@@ -12,8 +12,11 @@ function Map() {
 
   const cssMap = {
     transform: `scale(${zoom[zoomMap]})`,
-    // margin: `${mapMargin}px ${mapMargin / 2}px`,
   };
+  const refObj = {"Столовая":useRef(null),
+    "Не столовая":useRef(null),
+};
+
   let fill = ["#46E40E", "#46E40E"];
   return (
     <div
@@ -25,7 +28,7 @@ function Map() {
       }}
     >
       {selectedFloor === "1" && (
-        <FirstFloor selectedRegion={selectedRegion} css={cssMap} fill={fill} />
+        <FirstFloor refObj ={refObj} selectedRegion={selectedRegion} css={cssMap} fill={fill} />
       )}
       <div className={"mapControls"}>
         <div className="floorButtonsBox">
@@ -80,6 +83,8 @@ function Map() {
                 key={el}
                 onClick={() => {
                   setSelectedRegion(el);
+                  // @ts-ignore
+                  refObj[el].current.scrollIntoView({inline: "center", behavior: "smooth"})
                   console.log(selectedRegion);
                 }}
               >
