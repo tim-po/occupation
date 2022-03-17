@@ -1,21 +1,15 @@
-import React, {useLayoutEffect, useRef} from "react";
+import React, { useLayoutEffect, useRef } from "react";
 interface FirstFloorProps {
   css: { [key: string]: string };
   fill: string[];
   selectedRegion: string;
-  refObj: { [key : string]: any };
+  refObj: { [key: string]: any };
 }
 const FirstFloor = ({ css, fill, selectedRegion, refObj }: FirstFloorProps) => {
-
-
-
-
-    return (
+  return (
     <div className="svgMap" style={css} ref={refObj["Не столовая"]}>
-      {/*// @ts-ignore*/}
       <svg
-          ref={refObj["Столовая"]}
-          onClick={()=> console.log(refObj)}
+        ref={refObj["Столовая"]}
         width="465"
         height="1417"
         viewBox="0 0 465 1417"
