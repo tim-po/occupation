@@ -1,13 +1,20 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { RefObject } from "react";
 interface FirstFloorProps {
   css: { [key: string]: string };
   fill: string[];
   selectedRegion: string;
-  refObj: { [key: string]: any };
+  refObj: { [key: string]: RefObject<SVGSVGElement> };
+  REF_MAP: RefObject<HTMLDivElement>;
 }
-const FirstFloor = ({ css, fill, selectedRegion, refObj }: FirstFloorProps) => {
+const FirstFloor = ({
+  css,
+  fill,
+  selectedRegion,
+  refObj,
+  REF_MAP,
+}: FirstFloorProps) => {
   return (
-    <div className="svgMap" style={css} ref={refObj["Не столовая"]}>
+    <div className="svgMap" style={css} ref={REF_MAP}>
       <svg
         ref={refObj["Столовая"]}
         width="465"
