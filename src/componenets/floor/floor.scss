@@ -1,0 +1,85 @@
+.svgMap {
+  &.firstFloorMap{
+    background: url("../../img/1floor.svg");
+    min-width: 1236px;
+    min-height: 3027px;
+    width: 1236px;
+    height: 100%;
+  }
+  &.secondFloorMap {
+    transform-origin: 25% 0;
+    min-width: 2515px;
+    min-height: 3121px;
+    width: 2515px;
+    height: 100%;
+    background: url("../../img/2floor.svg");
+  }
+  &.thirdFloorMap {
+    transform-origin: 25% 0;
+    min-width: 2524px;
+    min-height: 3137px;
+    width: 2524px;
+    height: 100%;
+    background: url("../../img/3floor.svg");
+  }
+  transform-origin: center 0;
+  position: absolute;
+  background-position: 0% 0%;
+
+  background-size: auto 100%;
+  object-fit: contain;
+  margin-top: auto;
+  z-index: 1;
+
+  background-repeat: no-repeat;
+  background-size: auto;
+
+  .regions{
+    &.hallway{
+      top: 1497px;
+      left: 180px;
+    }
+    &.hall{
+      top: 2652px;
+      left: 201px;
+    }
+    &.diningRoom{
+      top: 1255px;
+      left: 89px;
+    }
+    &.office1208{
+      top: 113px;
+      left: 641px;
+    }
+    &.ladder{
+      top: 1255px;
+      left: 370px;
+    }
+
+    overflow: visible;
+    position: absolute;
+    cursor: pointer;
+    &:hover {
+      .aboutSvg {
+        display:block;
+      }
+    }
+    .aboutSvg {
+      display: none;
+      border: 2px solid gray;
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 3px 4px 7px #606060;
+      width: 250px;
+      height: 100px;
+      text-align: center;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 47px;
+      overflow: visible;
+
+    }
+  }
+}

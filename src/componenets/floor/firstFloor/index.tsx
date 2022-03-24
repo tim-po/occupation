@@ -1,4 +1,5 @@
 import React, { RefObject } from "react";
+import "../floor.scss";
 interface FirstFloorProps {
   css: { [key: string]: string };
   fill: string[];
@@ -14,8 +15,9 @@ const FirstFloor = ({
   REF_MAP,
 }: FirstFloorProps) => {
   return (
-    <div className="svgMap" style={css} ref={REF_MAP}>
+    <div className="svgMap firstFloorMap" style={css} ref={REF_MAP}>
       <svg
+        className="regions diningRoom"
         ref={refObj["Столовая"]}
         width="465"
         height="1417"

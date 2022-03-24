@@ -4,25 +4,26 @@
   border: 4px solid #000000;
   box-sizing: border-box;
   border-radius: 20px;
-  margin: 60px auto auto;
   width: 90vw;
-  height: 1116px;
+  height: 961px;
   overflow-x: auto;
   overflow-y: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  //align-items: center;
+  //justify-content: flex-start;
+
   .mapControls {
     z-index: 100;
     position: fixed;
     right: calc(5vw + 6px);
-    top: 66px;
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     width: 154px;
+
     .floorButtonsBox {
       display: flex;
       flex-direction: row;
@@ -33,14 +34,17 @@
       border-radius: 20px;
       overflow: hidden;
       margin-bottom: 30px;
+
       .buttonsItem {
         order: 0;
         text-align: center;
+
         &.active {
           background-color: rgb(183, 223, 250);
         }
       }
     }
+
     .zoomButtonsBox {
       display: flex;
       flex-direction: column;
@@ -50,6 +54,7 @@
       margin-bottom: 30px;
       width: 50px;
       height: 122px;
+
       .buttonsItem {
         flex: none;
         order: 1;
@@ -57,6 +62,7 @@
         margin: 2px 0px;
       }
     }
+
     .resetButtonBox {
       display: flex;
       flex-direction: column;
@@ -68,6 +74,7 @@
       height: 60px;
       display: flex;
       padding: 0px;
+
       .buttonsItem {
         flex: none;
         order: 1;
@@ -75,6 +82,7 @@
         margin: 2px 0px;
       }
     }
+
     .regionsList {
       display: flex;
       flex-direction: column;
@@ -82,6 +90,7 @@
       justify-content: center;
       width: 270px;
       margin-bottom: 30px;
+
       .regionsListItem {
         padding: 10px;
         width: 270px;
@@ -98,55 +107,13 @@
         /* identical to box height */
         cursor: pointer;
         color: #000000;
+
         &:hover {
           background-color: #c2c2c2;
         }
-      }
-    }
-  }
-  .svgMap {
-    transform-origin: 0 0;
-    position: absolute;
-    background-position: 0% 0%;
-    min-width: 1236px;
-    min-height: 3027px;
-    width: 1236px;
-    height: 100%;
-    background-size: auto 100%;
-    object-fit: contain;
-    margin-top: auto;
-    z-index: 1;
-    background: url("../../img/1floor.svg");
-    background-repeat: no-repeat;
-    background-size: auto;
-
-    // временно
-    svg {
-      position: relative;
-      top: 1255px;
-      left: 89px;
-      cursor: pointer;
-      &:hover {
-        .aboutSvg {
-          display: flex;
-          border: 2px solid gray;
-          border-radius: 10px;
-          background: #ffffff;
-          box-shadow: 3px 4px 7px #606060;
-          width: 250px;
-          height: 100px;
-          padding: 20px 5px;
-          text-align: center;
-          align-items: center;
-          font-family: Roboto;
-          font-style: normal;
-          font-weight: 400;
-          font-size: 40px;
-          line-height: 47px;
+        &.active {
+          background-color: rgb(197, 212, 222);
         }
-      }
-      .aboutSvg {
-        display: none;
       }
     }
   }
