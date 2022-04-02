@@ -4,6 +4,35 @@ import FirstFloor from "../floor/firstFloor";
 import SecondFloor from "../floor/secondFloor";
 import ThirdFloor from "../floor/thirdFloor";
 
+type MapObject = {
+  src: string // background map image
+  width: number,
+  height: number,
+}
+type Region = {
+  name: string, // works kinda like id
+  description: string,
+  cameraIds: string[],
+  src: string // region map image
+  width: number,
+  height: number,
+  x: number, // in percent of map width
+  y: number, // in percent of map heights
+}
+type Floor = {
+  number: string,
+  regions: Region[],
+  ref: RefObject<SVGSVGElement>,
+  floorMap: MapObject,
+}
+type CampusMapProps = {
+  campusName: string,
+  floors: Floor[],
+  selectedFloor?: string | undefined,
+  selectedRegion?: string | undefined, // region name
+}
+
+// CampusMap
 function Map() {
   const floors = ["1", "2", "3"];
   // const zoom = [0.2, 0.4, 0.6, 0.8, 1, 1.3, 1.6, 1.9, 2.1, 2.5];
@@ -50,6 +79,9 @@ function Map() {
       //   }
       // }}
     >
+      {/*TODO: move florControls to new component*/}
+      {/*florControls start*/}
+      {/*TODO: execute flore select through map props*/}
       {selectedFloor === "1" && (
         <FirstFloor
           refObj={refObj[0]}
@@ -96,7 +128,10 @@ function Map() {
             );
           })}
         </div>
+        {/*florControls end*/}
 
+        {/*TODO: move mapControls to new component*/}
+        {/*mapControls start*/}
         <div className="zoomButtonsBox">
           <button
             onClick={() => {
@@ -129,6 +164,10 @@ function Map() {
             0
           </button>
         </div>
+        {/* mapControls end*/}
+
+        {/*TODO: move regionControls to new component*/}
+        {/*regionControls start*/}
         <div className="regionsList">
           {regionsName[+selectedFloor - 1].map((el) => {
             return (
@@ -159,6 +198,7 @@ function Map() {
             );
           })}
         </div>
+        {/*regionControls end*/}
       </div>
     </div>
   );
