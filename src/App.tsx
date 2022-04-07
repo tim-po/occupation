@@ -1,6 +1,13 @@
 import React, {RefObject, useRef, useState} from 'react';
 import './App.css';
 import Map from './componenets/map/index'
+import floor1 from './img/1floor.svg'
+import floor2 from './img/2floor.svg'
+import floor3 from './img/3floor.svg'
+import hallway from './img/hallway.svg'
+import diningRoom from './img/diningRoom.svg'
+
+
 
 function App() {
     const floors = [{
@@ -10,7 +17,7 @@ function App() {
             description: 'Столовая',
             ref: useRef<SVGSVGElement>(null),
             cameraIds: ['', ''],
-            src: 'http://localhost:3000/static/media/diningRoom.e78321eea4a6bb337731.svg',
+            src: diningRoom,
             width:465,
             height:1417,
             x: 88.5,
@@ -18,7 +25,7 @@ function App() {
         }],
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
-            src:'http://localhost:3000/static/media/1floor.b6924801dccd3cbbff09.svg',
+            src:floor1,
             width:1235,
             height:3027
         }
@@ -29,17 +36,17 @@ function App() {
             description: 'коридор',
             cameraIds: ['', ''],
             ref: useRef<SVGSVGElement>(null),
-            src: '../../img/hallway.svg',
-            width:12,
-            height:12,
-            x: 1,
-            y: 1
+            src: hallway,
+            width:110,
+            height:502,
+            x: 179.5,
+            y: 1497
         }, {
             name: 'холл',
             description: 'холл',
             cameraIds: ['', ''],
             ref: useRef<SVGSVGElement>(null),
-            src: '../../img/hallway.svg',
+            src: '',
             width:12,
             height:12,
             x: 1,
@@ -47,7 +54,7 @@ function App() {
         }],
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
-            src:'http://localhost:3000/static/media/2floor.42da2d09fdd7ae1ea272.svg',
+            src:floor2,
             width:1235,
             height:3027
         }
@@ -57,7 +64,7 @@ function App() {
             name: 'Коридор',
             description: 'Коридор',
             cameraIds: ['', ''],
-            src: '',
+            src: hallway,
             ref: useRef<SVGSVGElement>(null),
             width:12,
             height:12,
@@ -77,16 +84,16 @@ function App() {
             name: 'Лестница',
             description: 'Лестница',
             cameraIds: ['', ''],
-            src: '',
+            src: `../../../img/hallway.svg`,
             ref: useRef<SVGSVGElement>(null),
-            width:12,
-            height:12,
+            width:110,
+            height:502,
             x: 1,
             y: 1
         }],
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
-            src:'http://localhost:3000/static/media/3floor.bc5f83f7e91e190bb25a.svg',
+            src:floor3,
             width:1235,
             height:3027
         }
@@ -105,7 +112,7 @@ function App() {
         }],
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
-            src:'./img/1floor.svg',
+            src:floor1,
             width:1235,
             height:3027
         }
