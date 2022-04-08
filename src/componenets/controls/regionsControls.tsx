@@ -26,16 +26,17 @@ type FloorType = {
     floorMap: MapObject,
 }
 
-interface RegionsControlsPropsI{
+type RegionsControlsProps = {
     floors: FloorType[],
     setZoom: (ev: React.SetStateAction<number>) => void;
     selectedRegion:string,
     selectedFloor: string,
     setSelectedRegion: (ev: React.SetStateAction<string>) => void,
+    mapHeight: number
 }
 
-function RegionsControls({setZoom, floors,selectedFloor,  selectedRegion, setSelectedRegion}:RegionsControlsPropsI) {
-    const MAP_HEIGHT = 961;
+function RegionsControls({setZoom, floors,selectedFloor,  selectedRegion, setSelectedRegion, mapHeight}:RegionsControlsProps) {
+
     const regions = floors[+selectedFloor -1].regions
     const floorRef = floors[+selectedFloor -1].ref
     return (
@@ -50,7 +51,7 @@ function RegionsControls({setZoom, floors,selectedFloor,  selectedRegion, setSel
                                 setSelectedRegion(el.name);
 
                                 let currentScale =
-                                    MAP_HEIGHT /
+                                    mapHeight /
                                     el.ref!.current!.height!.baseVal!
                                         .value;
                                 currentScale = currentScale < 1 ? currentScale : 1;

@@ -21,18 +21,19 @@ type FloorType = {
     ref: RefObject<HTMLDivElement>,
     floorMap: MapObject,
 }
-interface MapControlPropsI{
+type MapControlProps = {
     zoom: number;
     setZoom: (ev: React.SetStateAction<number>) => void;
     selectedFloor: string;
     setSelectedRegion:  (ev: React.SetStateAction<string>)=> void;
     floors: FloorType[];
+    mapHeight: number;
 }
-function MapControl({zoom, setZoom, selectedFloor, setSelectedRegion, floors}: MapControlPropsI) {
+function MapControl({zoom, setZoom, selectedFloor, setSelectedRegion, floors, mapHeight}: MapControlProps) {
     /*
     TODO: экспортировать эти константы
      */
-    const MAP_HEIGHT = 961;
+
     useEffect(()=>{
         floors[+selectedFloor - 1].ref!.current!.style!.transform = `scale(${zoom})`
     }, [zoom])
@@ -66,7 +67,7 @@ function MapControl({zoom, setZoom, selectedFloor, setSelectedRegion, floors}: M
             <div className="resetButtonBox">
                 <button
                     onClick={() => {
-                        setZoom(MAP_HEIGHT / floors[+selectedFloor - 1].floorMap.height)
+                        setZoom(mapHeight / floors[+selectedFloor - 1].floorMap.height)
                         setSelectedRegion("")
                     }}
                     className={"buttonsItem "}

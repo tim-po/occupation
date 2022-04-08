@@ -25,7 +25,7 @@ type FloorType = {
     floorMap: MapObject,
 }
 
-interface FloorControlsPropsI {
+type FloorControlsPropsI = {
     floors: FloorType[];
     selectedFloor:string;
     setSelectedFloor: (ev: React.SetStateAction<string>) => void;

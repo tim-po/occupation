@@ -122,11 +122,11 @@ function App() {
 
     const [selectedFloor, setSelectedFloor] = useState<string>("1");
     const [selectedRegion, setSelectedRegion] = useState<string>("");
-
+    const MAP_HEIGHT = 961;
   return (
     <div className="App">
 
-      <Map campusName={campusName} floors={floors} selectedFloor={selectedFloor} setSelectedFloor = {setSelectedFloor} setSelectedRegion = {setSelectedRegion}  selectedRegion={selectedRegion}/>
+      <Map mapHeight = {MAP_HEIGHT} campusName={campusName} floors={floors} selectedFloor={selectedFloor} setSelectedFloor = {setSelectedFloor} setSelectedRegion = {setSelectedRegion}  selectedRegion={selectedRegion}/>
     </div>
   );
 }

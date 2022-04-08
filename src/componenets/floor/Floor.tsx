@@ -1,5 +1,6 @@
-import React, { RefObject } from "react";
+import React, {createElement, RefObject} from "react";
 import "./floor.scss";
+import {create} from "domain";
 
 type Region = {
     name: string, // works kinda like id
@@ -63,7 +64,6 @@ const Floor = ({number, regions, refFloor, floorMap}: FloorProps) => {
                            </foreignObject>
                     </svg>)
             })}
-
         </div>
     );
 };
