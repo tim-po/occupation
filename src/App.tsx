@@ -2,9 +2,7 @@ import React, {RefObject, useRef, useState} from 'react';
 import './App.css';
 import Map from './componenets/map/index'
 import floor1 from './img/1floor.svg'
-import floor2 from './img/2floor.svg'
 import floor3 from './img/3floor.svg'
-import hallway from './img/hallway.svg'
 import diningRoom from './img/diningRoom.svg'
 
 
@@ -32,29 +30,29 @@ function App() {
     }, {
         number: "2",
         regions: [{
-            name: 'коридор',
+            name: 'hallway',
             description: 'коридор',
             cameraIds: ['', ''],
             ref: useRef<SVGSVGElement>(null),
-            src: hallway,
+            src: '/img/floor1/hallway.svg',
             width:110,
             height:502,
             x: 179.5,
             y: 1497
         }, {
-            name: 'холл',
+            name: 'hall',
             description: 'холл',
             cameraIds: ['', ''],
             ref: useRef<SVGSVGElement>(null),
-            src: '',
-            width:12,
-            height:12,
-            x: 1,
-            y: 1
+            src: '/img/floor1/hall.svg',
+            width: 271.5,
+            height: 289,
+            x: 201,
+            y: 2652.5
         }],
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
-            src:floor2,
+            src: '/img/2floor.svg',
             width:1235,
             height:3027
         }
@@ -64,7 +62,7 @@ function App() {
             name: 'Коридор',
             description: 'Коридор',
             cameraIds: ['', ''],
-            src: hallway,
+            src: '/img/floor1/hallway.svg',
             ref: useRef<SVGSVGElement>(null),
             width:12,
             height:12,
