@@ -1,21 +1,18 @@
 import React, {RefObject, useRef, useState} from 'react';
 import './App.css';
 import Map from './componenets/map/index'
-import floor1 from './img/1floor.svg'
-import floor3 from './img/3floor.svg'
-import diningRoom from './img/diningRoom.svg'
-
-
+// @ts-ignore
+import {BrowserRouter as Router} from "react-router-dom";
 
 function App() {
     const floors = [{
         number: "1",
         regions: [{
-            name: 'Столовая',
+            name: 'diningRoom',
             description: 'Столовая',
             ref: useRef<SVGSVGElement>(null),
             cameraIds: ['', ''],
-            src: diningRoom,
+            src: '/img/floor1/diningRoom.svg',
             width:465,
             height:1417,
             x: 88.5,
@@ -23,7 +20,7 @@ function App() {
         }],
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
-            src:floor1,
+            src:'/img/1floor.svg',
             width:1235,
             height:3027
         }
@@ -34,7 +31,7 @@ function App() {
             description: 'коридор',
             cameraIds: ['', ''],
             ref: useRef<SVGSVGElement>(null),
-            src: '/img/floor1/hallway.svg',
+            src: '/img/floor2/hallway.svg',
             width:110,
             height:502,
             x: 179.5,
@@ -44,7 +41,7 @@ function App() {
             description: 'холл',
             cameraIds: ['', ''],
             ref: useRef<SVGSVGElement>(null),
-            src: '/img/floor1/hall.svg',
+            src: '/img/floor2/hall.svg',
             width: 271.5,
             height: 289,
             x: 201,
@@ -59,72 +56,53 @@ function App() {
     }, {
         number: "3",
         regions: [{
-            name: 'Коридор',
+            name: 'hallway',
             description: 'Коридор',
             cameraIds: ['', ''],
-            src: '/img/floor1/hallway.svg',
-            ref: useRef<SVGSVGElement>(null),
-            width:12,
-            height:12,
-            x: 1,
-            y: 1
-        }, {
-            name: '1208 кабинет',
-            description: '1208 кабинет',
-            cameraIds: ['', ''],
-            src: '',
-            ref: useRef<SVGSVGElement>(null),
-            width:12,
-            height:12,
-            x: 1,
-            y: 1
-        }, {
-            name: 'Лестница',
-            description: 'Лестница',
-            cameraIds: ['', ''],
-            src: `../../../img/hallway.svg`,
+            src: '/img/floor3/hallway.svg',
             ref: useRef<SVGSVGElement>(null),
             width:110,
             height:502,
-            x: 1,
-            y: 1
-        }],
-        ref:useRef<HTMLDivElement>(null),
-        floorMap:{
-            src:floor3,
-            width:1235,
-            height:3027
-        }
-    }, {
-        number: "4",
-        regions: [{
-            name: 'Столовая',
-            description: '',
+            x: 179.5,
+            y: 1502
+        }, {
+            name: 'office1208',
+            description: '1208 кабинет',
             cameraIds: ['', ''],
+            src: '/img/floor3/office1208.svg',
             ref: useRef<SVGSVGElement>(null),
-            src: '',
-            width:12,
-            height:12,
-            x: 1,
-            y: 1
+            width: 140,
+            height: 119,
+            x: 640,
+            y: 112
+        }, {
+            name: 'ladder',
+            description: 'Лестница',
+            cameraIds: ['', ''],
+            src: `/img/floor3/ladder.svg`,
+            ref: useRef<SVGSVGElement>(null),
+            width: 293,
+            height: 267,
+            x: 371,
+            y: 1254
         }],
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
-            src:floor1,
-            width:1235,
-            height:3027
+            src:'/img/3floor.svg',
+            width:2524,
+            height:3137
         }
     }]
 
     const campusName = "ITMO";
 
-    const [selectedFloor, setSelectedFloor] = useState<string>("1");
-    const [selectedRegion, setSelectedRegion] = useState<string>("");
+
     const MAP_HEIGHT = 961;
   return (
     <div className="App">
-
-      <Map mapHeight = {MAP_HEIGHT} campusName={campusName} floors={floors} selectedFloor={selectedFloor} setSelectedFloor = {setSelectedFloor} setSelectedRegion = {setSelectedRegion}  selectedRegion={selectedRegion}/>
+        <Router>
+      <Map mapHeight = {MAP_HEIGHT} campusName={campusName} floors={floors}/>
+        </Router>
     </div>
   );
 }

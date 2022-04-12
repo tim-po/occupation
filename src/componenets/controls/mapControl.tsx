@@ -1,41 +1,20 @@
 import React, {RefObject, useEffect, useState} from 'react';
+import {Link, useSearchParams} from "react-router-dom";
+import {FloorType} from "../../types";
 
-type MapObject = {
-    src: string // background map image
-    width: number,
-    height: number,
-}
-type Region = {
-    name: string, // works kinda like id
-    description: string,
-    cameraIds: string[],
-    src: string // region map image
-    width: number,
-    height: number,
-    x: number, // in percent of map width
-    y: number, // in percent of map heights
-}
-type FloorType = {
-    number: string,
-    regions: Region[],
-    ref: RefObject<HTMLDivElement>,
-    floorMap: MapObject,
-}
 type MapControlProps = {
     zoom: number;
     setZoom: (ev: React.SetStateAction<number>) => void;
-    selectedFloor: string;
-    setSelectedRegion:  (ev: React.SetStateAction<string>)=> void;
     floors: FloorType[];
     mapHeight: number;
 }
-function MapControl({zoom, setZoom, selectedFloor, setSelectedRegion, floors, mapHeight}: MapControlProps) {
-    /*
-    TODO: экспортировать эти константы
-     */
+function MapControl({zoom, setZoom, floors, mapHeight}: MapControlProps) {
+    const [search] = useSearchParams()
+    const floor = search.get('floor') || 1
+
 
     useEffect(()=>{
-        floors[+selectedFloor - 1].ref!.current!.style!.transform = `scale(${zoom})`
+        floors[+floor - 1].ref!.current!.style!.transform = `scale(${zoom})`
     }, [zoom])
     const zoomPlus = () =>{
         if (+zoom <= 1) {
@@ -65,15 +44,16 @@ function MapControl({zoom, setZoom, selectedFloor, setSelectedRegion, floors, ma
             </button>
         </div>
             <div className="resetButtonBox">
-                <button
-                    onClick={() => {
-                        setZoom(mapHeight / floors[+selectedFloor - 1].floorMap.height)
-                        setSelectedRegion("")
-                    }}
-                    className={"buttonsItem "}
-                >
+                <Link to={`/?floor=${floor}`} className={"buttonsItem "}  onClick={() => {
+                    setZoom(mapHeight / floors[+floor - 1].floorMap.height)
+                }}>
+                {/*<button*/}
+                {/*   */}
+                {/*    */}
+                {/*>*/}
                     0
-                </button>
+                {/*</button>*/}
+                </Link>
             </div>
         </div>
     );

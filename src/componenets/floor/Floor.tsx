@@ -1,24 +1,7 @@
 import React, {createElement, RefObject} from "react";
 import "./floor.scss";
 import {create} from "domain";
-
-type Region = {
-    name: string, // works kinda like id
-    description: string,
-    ref:  RefObject<SVGSVGElement>,
-    cameraIds: string[],
-    src: string // region map image
-    width: number,
-    height: number,
-    x: number, // in percent of map width
-    y: number, // in percent of map heights
-}
-
-type MapObject = {
-    src: string // background map image
-    width: number,
-    height: number,
-}
+import {MapObject, Region} from "../../types";
 
 type FloorProps = {
     number: string,

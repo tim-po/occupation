@@ -1,42 +1,19 @@
 import "./index.scss";
-import React, {RefObject, useEffect, useRef, useState} from "react";
-import FirstFloor from "../floor/firstFloor";
-import SecondFloor from "../floor/secondFloor";
-import ThirdFloor from "../floor/thirdFloor";
+import React, {useState} from "react";
 import FloorControls from "../controls/FloorControls";
 import Floor from "../floor/Floor";
 import MapControl from "../controls/mapControl";
 import RegionsControls from "../controls/regionsControls";
+import {
+  Routes,
+  Route,
+  useSearchParams,
+} from 'react-router-dom';
+import {FloorType} from "../../types";
 
-type MapObject = {
-  src: string // background map image
-  width: number,
-  height: number,
-}
-type Region = {
-  name: string, // works kinda like id
-  description: string,
-  cameraIds: string[],
-  ref: RefObject<SVGSVGElement>,
-  src: string // region map image
-  width: number,
-  height: number,
-  x: number, // in percent of map width
-  y: number, // in percent of map heights
-}
-type Floor = {
-  number: string,
-  regions: Region[],
-  ref: RefObject<HTMLDivElement>,
-  floorMap: MapObject,
-}
 type CampusMapProps = {
   campusName: string,
-  floors: Floor[],
-  selectedFloor: string ,//| undefined,
-  selectedRegion: string ,//| undefined, // region name
-  setSelectedFloor: ((ev: React.SetStateAction<string>) => void),
-  setSelectedRegion: ((ev: React.SetStateAction<string>) => void),
+  floors: FloorType[],
   mapHeight: number
 }
 
@@ -44,15 +21,13 @@ type CampusMapProps = {
 function Map({ campusName,
                mapHeight,
                floors,
-               selectedFloor,
-    setSelectedFloor,
-    setSelectedRegion,
-             selectedRegion}: CampusMapProps) {
+               }: CampusMapProps) {
   const [zoom, setZoom] = useState(1)
 
-
-
+  const [searchParams]= useSearchParams()
+  const floor = searchParams.get('floor') || '1'
   return (
+
     <div
       className={"map"}
       // onDoubleClick={() => {
@@ -61,17 +36,25 @@ function Map({ campusName,
       //   }
       // }}
     >
+
       <div className={"mapControls"}>
-        <FloorControls selectedFloor={selectedFloor} setSelectedFloor={setSelectedFloor} floors={floors} setSelectedRegion={setSelectedRegion}/>
-        <MapControl mapHeight ={mapHeight} zoom ={zoom} setZoom ={setZoom} selectedFloor={selectedFloor} setSelectedRegion={setSelectedRegion} floors={floors}/>
-        <RegionsControls mapHeight ={mapHeight} setZoom ={setZoom} floors={floors} selectedFloor={selectedFloor} selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion}/>
+        <FloorControls floors={floors}/>
+        <MapControl mapHeight ={mapHeight} zoom ={zoom} setZoom ={setZoom} floors={floors}/>
+        <RegionsControls mapHeight ={mapHeight} setZoom ={setZoom} floors={floors}/>
       </div>
-
-      <Floor floorMap={floors[+selectedFloor -1].floorMap} number={selectedFloor} refFloor={floors[+selectedFloor-1].ref} regions={floors[+selectedFloor -1].regions}/>
-
+        <Routes >
+        <Route path = "/" element={
+          <Floor
+              floorMap={floors[+floor -1].floorMap}
+              number={floor}
+              refFloor={floors[+floor-1].ref}
+              regions={floors[+floor -1].regions}
+          />
+        }
+             />
+      </Routes>
 
       </div>
-    // </div>
   );
 }
 
