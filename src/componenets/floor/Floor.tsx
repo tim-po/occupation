@@ -1,7 +1,9 @@
-import React, {createElement, RefObject} from "react";
+import React, { RefObject} from "react";
 import "./floor.scss";
-import {create} from "domain";
+import SVG from 'react-inlinesvg';
+
 import {MapObject, Region} from "../../types";
+import {useSearchParams} from "react-router-dom";
 
 type FloorProps = {
     number: string,
@@ -15,40 +17,42 @@ const Floor = ({number, regions, refFloor, floorMap}: FloorProps) => {
         width:floorMap.width,
         height:floorMap.height,
     }
-
+    const [search] = useSearchParams()
+    const currentRegion = search.get('region')
     return (
         <div className="svgMap firstFloorMap" style={css} ref={refFloor}>
 
             {
-                regions.map((region)=>{
+                regions.map((region) => {
+                   return(<svg className={'regions ' + (currentRegion === region.name && 'active')}
+                               width={region.width}
+                               height={region.height}
+                               ref = {region.ref}
+                               key ={region.name}
+                               style={{
+                                   top: region.y,
+                                   left:region.x,
+                               }}>
+                       <SVG
+                        src={region.src}
+                        description={region.description}
+                       />
+                                      <foreignObject
+                                              className="aboutSvg"
+                                              x="0"
+                                              y={region.height/2}
+                                              width="180"
+                                              height="160"
+                                          >
+                                              <div>{region.description}</div>
+                                      </foreignObject>
+                   </svg>)
+                })
+            }
 
-                   return( <svg className="regions"
-                                width={region.width}
-                                height={region.height}
-                                ref = {region.ref}
-                                key ={region.name}
-
-
-                        style={{
-                            background: `url("${region.src}")`,
-                            top: region.y,
-                            left:region.x,
-                        }}
-                    >)
-                           {region.description}
-                           <foreignObject
-                                   className="aboutSvg"
-                                   x="0"
-                                   y={region.height/2}
-                                   width="180"
-                                   height="160"
-                               >
-                                   <div>{region.description}</div>
-                           </foreignObject>
-                    </svg>)
-            })}
         </div>
     );
 };
 
 export default Floor;
+

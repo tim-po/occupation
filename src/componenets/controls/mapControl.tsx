@@ -47,12 +47,7 @@ function MapControl({zoom, setZoom, floors, mapHeight}: MapControlProps) {
                 <Link to={`/?floor=${floor}`} className={"buttonsItem "}  onClick={() => {
                     setZoom(mapHeight / floors[+floor - 1].floorMap.height)
                 }}>
-                {/*<button*/}
-                {/*   */}
-                {/*    */}
-                {/*>*/}
                     0
-                {/*</button>*/}
                 </Link>
             </div>
         </div>

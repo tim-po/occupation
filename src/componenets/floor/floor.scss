@@ -16,6 +16,11 @@
     overflow: visible;
     position: absolute;
     cursor: pointer;
+    &.active{
+       path{
+          stroke: red;
+        }
+    }
     &:hover {
       .aboutSvg {
         display:block;

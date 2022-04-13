@@ -22,11 +22,11 @@ function RegionsControls({setZoom, floors, mapHeight}:RegionsControlsProps) {
                         <Link key={el.name}
                               to={`/?floor=${floor}&region=${el.name}`}
                               className={"regionsListItem " + (region === el.name && "active")}
-                              onClick={() => {
+                              onClick={(e) => {
+
                             let currentScale =
                                 mapHeight /
-                                el.ref!.current!.height!.baseVal!
-                                    .value;
+                                el.ref!.current!.height!.baseVal!.value;
                             currentScale = currentScale < 1 ? currentScale : 1;
 
                             floorRef!.current!.style.transform = `scale(${currentScale})`;
@@ -43,7 +43,6 @@ function RegionsControls({setZoom, floors, mapHeight}:RegionsControlsProps) {
                     );
                 })}
             </div>
-            {/*</Router>*/}
         </div>
 
     );
