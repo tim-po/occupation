@@ -1,5 +1,5 @@
 import "./index.scss";
-import React, {useState} from "react";
+import React, {createRef, useRef, useState} from "react";
 import FloorControls from "../controls/FloorControls";
 import Floor from "../floor/Floor";
 import MapControl from "../controls/mapControl";
@@ -19,11 +19,11 @@ type CampusMapProps = {
 
 // CampusMap
 function Map({ campusName,
-               mapHeight,
+               // mapHeight,
                floors,
                }: CampusMapProps) {
   const [zoom, setZoom] = useState(1)
-
+  const mapHeight = window.innerHeight;
   const [searchParams]= useSearchParams()
   const floor = searchParams.get('floor') || '1'
   return (
@@ -36,12 +36,14 @@ function Map({ campusName,
       //   }
       // }}
     >
-
       <div className={"mapControls"}>
-        <FloorControls floors={floors}/>
-        <MapControl mapHeight ={mapHeight} zoom ={zoom} setZoom ={setZoom} floors={floors}/>
-        <RegionsControls mapHeight ={mapHeight} setZoom ={setZoom} floors={floors}/>
+      <MapControl mapHeight ={mapHeight} zoom ={zoom} setZoom ={setZoom} floors={floors}/>
       </div>
+     <div className={"sideMenu"}>
+        <FloorControls floors={floors}/>
+        <RegionsControls mapHeight ={mapHeight} setZoom ={setZoom} floors={floors}/>
+     </div>
+
         <Routes >
         <Route path = "/" element={
           <Floor

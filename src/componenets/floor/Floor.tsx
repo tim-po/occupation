@@ -33,18 +33,19 @@ const Floor = ({number, regions, refFloor, floorMap}: FloorProps) => {
                                    top: region.y,
                                    left:region.x,
                                }}>
+                       <title id="unique-id">Checkout</title>
                        <SVG
                         src={region.src}
                         description={region.description}
                        />
                                       <foreignObject
-                                              className="aboutSvg"
+                                              className="aboutSvg_container"
                                               x="0"
                                               y={region.height/2}
                                               width="180"
                                               height="160"
                                           >
-                                              <div>{region.description}</div>
+                                              <div className= "aboutSvg">{region.description}</div>
                                       </foreignObject>
                    </svg>)
                 })

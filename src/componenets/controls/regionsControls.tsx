@@ -16,6 +16,7 @@ function RegionsControls({setZoom, floors, mapHeight}:RegionsControlsProps) {
     const floorRef = floors[+floor -1].ref
     return (
         <div>
+            <h1 className={'title'}>Выбор зоны</h1>
             <div className="regionsList">
                 {regions.map((el) => {
                     return (

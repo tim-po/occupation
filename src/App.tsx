@@ -50,8 +50,8 @@ function App() {
         ref:useRef<HTMLDivElement>(null),
         floorMap:{
             src: '/img/2floor.svg',
-            width:1235,
-            height:3027
+            width:2515,
+            height:3121
         }
     }, {
         number: "3",

@@ -1,151 +1,148 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 .map {
-  border: 4px solid #000000;
+  border-right: 3px solid rgba(140, 140, 140, 0.63);
   box-sizing: border-box;
-  border-radius: 20px;
-  width: 90vw;
-  height: 961px;
+  width: 84vw;
+  height: 100vh;
   overflow-x: auto;
   overflow-y: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  //align-items: center;
-  //justify-content: flex-start;
+  font-family: 'Inter';
 
   .mapControls {
     z-index: 100;
     position: fixed;
-    right: calc(5vw + 6px);
-
+    right: calc(16vw + 15px);
+    top: 36px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    width: 154px;
+    width: 60px;
+    height: 100px;
 
-    .floorButtonsBox {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      flex-wrap: nowrap;
-      padding: 0px;
-      //width: 154px;
-      height: 60px;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 30px;
-
-      .buttonsItem {
-        order: 0;
-        text-align: center;
-        text-decoration: none;
-
-        &.active {
-          background-color: rgb(183, 223, 250);
-        }
-      }
-    }
-
-    .zoomButtonsBox {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 30px;
-      width: 50px;
-      flex-wrap: wrap;
-      //height: 122px;
-
-      .buttonsItem {
-        flex: none;
-        order: 1;
-        flex-grow: 0;
-        margin: 2px 0px;
-      }
-    }
-
-    .resetButtonBox {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 30px;
-      //width: 50px;
-      //height: 60px;
-      display: flex;
-      padding: 0px;
-
-      .buttonsItem {
-        flex: none;
-        order: 1;
-        flex-grow: 0;
-        margin: 2px 0px;
-        text-decoration: none;
-        text-align: center;
-      }
-    }
-
-    .regionsList {
+    .zoomButtonsBox, .resetButtonBox {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 270px;
-      margin-bottom: 30px;
+      padding: 0;
+      overflow: hidden;
+      background: #FFFFFF;
+      border: 1px solid #8C8C8C;
+      border-radius: 20px;
+      margin-bottom: 20px;
 
-      .regionsListItem {
-        box-sizing: border-box;
-        padding: 10px;
-        width: 270px;
-        border: none;
-        text-decoration: none;
-        align-items: center;
-        margin: 2px 0px;
-        background: #d9d9d9;
-        border-radius: 10px;
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 30px;
-        line-height: 47px;
-        /* identical to box height */
-        cursor: pointer;
-        color: #000000;
+      .buttonsItem:active{
+        background: rgb(197, 212, 222);
+        font-size: 24px;
+      }
+    }
+    .zoomButtonsBox{
+      .buttonsItem:first-child{
+        border-bottom: 1px solid  #8C8C8C;
+      }
+    }
+    }
 
-        &:hover {
-          background-color: #c2c2c2;
-        }
-        &.active {
-          background-color: rgb(197, 212, 222);
-        }
+  }
+
+
+.buttonsItem {
+  border:none;
+  width: 36px;
+  height: 36px;
+  text-decoration: none;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
+  color: #000000;
+  background: #FFFFFF;
+  display: block;
+  cursor: pointer;
+}
+
+
+.sideMenu{
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  right: 0;
+  padding: 10px;
+  width:16vw;
+  height: 100vw;
+  background: #F1F1F1;
+  font-family: 'Inter';
+  font-style: normal;
+  .title{
+
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  .regionsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    margin-top: 20px;
+
+    .regionsListItem {
+      box-sizing: border-box;
+      padding: 5px 10px;
+      width: 100%;
+      border: none;
+      text-decoration: none;
+      align-items: center;
+      margin: 2px 0px;
+      background: #d9d9d9;
+      border-radius: 10px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 47px;
+      /* identical to box height */
+      cursor: pointer;
+      color: #000000;
+
+      &:hover {
+        background-color: #c2c2c2;
+      }
+      &.active {
+        background-color: rgb(197, 212, 222);
       }
     }
   }
-}
+  .floorButtonsBox {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    overflow: hidden;
 
-.buttonsItem {
-  border: none;
-  height: 60px;
-  width: 50px;
-  flex: none;
-
-  flex-grow: 0;
-  margin: 0px 2px;
-  background: #d9d9d9;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 47px;
-  /* identical to box height */
-  cursor: pointer;
-  color: #000000;
-  &:hover {
-    background-color: #c2c2c2;
+    .buttonsItem {
+      &:first-child{
+        border-right:none;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+      }
+      &:last-child{
+        border-left:none;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+      border:1px solid  #8C8C8C;
+      &.active {
+        background-color: rgb(197, 212, 222);
+      }
+    }
   }
 }
