@@ -30,13 +30,20 @@ function Map({ campusName,
 
     return (
 <TransformWrapper
-    initialScale={1}
+    initialScale={0.5}
     initialPositionX={0}
     initialPositionY={0}
     minScale={0.1}
     maxScale={1.8}
-    wheel={{ disabled: true }}
-    centerZoomedOut
+    // centerOnInit={true}
+    wheel={{
+        disabled:true
+    }}
+    alignmentAnimation={{sizeX:1000}}
+    doubleClick={{
+        step:0.4,
+        animationTime:1
+    }}
 
 >
         {({ zoomIn, zoomOut, resetTransform, zoomToElement, ...rest }:any) => (
