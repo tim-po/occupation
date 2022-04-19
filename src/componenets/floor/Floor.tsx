@@ -21,7 +21,12 @@ const Floor = ({number, regions, refFloor, floorMap}: FloorProps) => {
     const [search] = useSearchParams()
     const currentRegion = search.get('region')
     return (
-        <TransformComponent>
+        <TransformComponent
+                wrapperStyle = {{
+                        width: "100%",
+                        height: "100%"
+                    }}
+           >
         <div className="svgMap" style={css} ref={refFloor}>
 
             {

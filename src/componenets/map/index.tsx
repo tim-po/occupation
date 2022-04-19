@@ -30,12 +30,10 @@ function Map({ campusName,
 
     return (
 <TransformWrapper
-    initialScale={0.5}
-    initialPositionX={0}
-    initialPositionY={0}
+    initialScale={mapHeight/floors[+floor -1].floorMap.height}
     minScale={0.1}
     maxScale={1.8}
-    // centerOnInit={true}
+    centerOnInit={true}
     wheel={{
         disabled:true
     }}
@@ -51,20 +49,11 @@ function Map({ campusName,
                 <div
                   className={"map"}
                 >
-
-
-                <TransformComponent
-                    wrapperStyle = {{
-                            width: "100%",
-                            height: "100%"
-                        }}
-                        >
                     <Floor floorMap={floors[+floor -1].floorMap}
                              number={floor}
                              refFloor={floors[+floor-1].ref}
                              regions={floors[+floor -1].regions}
                     />
-                </TransformComponent>
                     <div className={"mapControls"}>
                         <MapControl zoomIn ={zoomIn} zoomOut = {zoomOut} resetTransform = {resetTransform}/>
                     </div>
