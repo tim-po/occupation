@@ -4,6 +4,7 @@ import SVG from 'react-inlinesvg';
 
 import {MapObject, Region} from "../../types";
 import {useSearchParams} from "react-router-dom";
+import {TransformComponent} from "react-zoom-pan-pinch";
 
 type FloorProps = {
     number: string,
@@ -20,38 +21,43 @@ const Floor = ({number, regions, refFloor, floorMap}: FloorProps) => {
     const [search] = useSearchParams()
     const currentRegion = search.get('region')
     return (
-        <div className="svgMap firstFloorMap" style={css} ref={refFloor}>
+        <TransformComponent>
+        <div className="svgMap" style={css} ref={refFloor}>
 
             {
                 regions.map((region) => {
-                   return(<svg className={'regions ' + (currentRegion === region.name && 'active')}
+                   return(
+                       <div className={'regions ' + (currentRegion === region.name && 'active')}
                                width={region.width}
+                               id={region.name}
                                height={region.height}
+                               //@ts-ignore
                                ref = {region.ref}
                                key ={region.name}
                                style={{
                                    top: region.y,
                                    left:region.x,
                                }}>
-                       <title id="unique-id">Checkout</title>
+
                        <SVG
                         src={region.src}
                         description={region.description}
                        />
-                                      <foreignObject
+                                      <div
                                               className="aboutSvg_container"
-                                              x="0"
-                                              y={region.height/2}
-                                              width="180"
-                                              height="160"
+                                              // x="0"
+                                              // y={region.height/2}
+                                              // width="180"
+                                              // height="160"
                                           >
                                               <div className= "aboutSvg">{region.description}</div>
-                                      </foreignObject>
-                   </svg>)
+                                      </div>
+                   </div>)
                 })
             }
 
         </div>
+        </TransformComponent>
     );
 };
 

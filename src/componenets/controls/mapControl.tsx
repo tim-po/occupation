@@ -3,50 +3,35 @@ import {Link, useSearchParams} from "react-router-dom";
 import {FloorType} from "../../types";
 
 type MapControlProps = {
-    zoom: number;
-    setZoom: (ev: React.SetStateAction<number>) => void;
-    floors: FloorType[];
-    mapHeight: number;
+    zoomIn: (step: number, animationTime: number, animationName: string) => void,
+    zoomOut: (step: number, animationTime: number, animationName: string) => void,
+    resetTransform: (x: number, y: number, scale: number, animationTime: number, animationName:string) => void
+
 }
-function MapControl({zoom, setZoom, floors, mapHeight}: MapControlProps) {
+function MapControl({zoomIn, zoomOut, resetTransform}: any) {
     const [search] = useSearchParams()
     const floor = search.get('floor') || 1
-
-
-    useEffect(()=>{
-        floors[+floor - 1].ref!.current!.style!.transform = `scale(${zoom})`
-    }, [zoom])
-    const zoomPlus = () =>{
-        if (+zoom <= 1) {
-            setZoom(+zoom + 0.1)
-        }
-    }
-    const zoomMinus = () =>{
-        if (zoom  > 0.2) {
-            setZoom((cur) => cur-0.1)
-        }
-    }
 
     return (
         <div>
             <div className="zoomButtonsBox">
             <button
-                onClick={zoomPlus}
+                onClick={()=> zoomIn()}
                 className={"buttonsItem "}
             >
                 +
             </button>
             <button
-                onClick={zoomMinus}
+                onClick={() => zoomOut()}
                 className="buttonsItem"
             >
                 -
             </button>
         </div>
             <div className="resetButtonBox">
-                <Link to={`/?floor=${floor}`} className={"buttonsItem "}  onClick={() => {
-                    setZoom(mapHeight / floors[+floor - 1].floorMap.height)
-                }}>
+                <Link to={`/?floor=${floor}`}
+                      className={"buttonsItem "}
+                      onClick={() => resetTransform()}>
                     0
                 </Link>
             </div>

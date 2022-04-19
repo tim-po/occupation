@@ -10,6 +10,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import {FloorType} from "../../types";
+import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 
 type CampusMapProps = {
   campusName: string,
@@ -26,37 +27,50 @@ function Map({ campusName,
   const mapHeight = window.innerHeight;
   const [searchParams]= useSearchParams()
   const floor = searchParams.get('floor') || '1'
-  return (
 
-    <div
-      className={"map"}
-      // onDoubleClick={() => {
-      //   if (zoomMap < 1) {
-      //     setZoomMap(zoomMap + 0.05);
-      //   }
-      // }}
-    >
-      <div className={"mapControls"}>
-      <MapControl mapHeight ={mapHeight} zoom ={zoom} setZoom ={setZoom} floors={floors}/>
-      </div>
-     <div className={"sideMenu"}>
-        <FloorControls floors={floors}/>
-        <RegionsControls mapHeight ={mapHeight} setZoom ={setZoom} floors={floors}/>
-     </div>
+    return (
+<TransformWrapper
+    initialScale={1}
+    initialPositionX={0}
+    initialPositionY={0}
+    minScale={0.1}
+    maxScale={1.8}
+    wheel={{ disabled: true }}
+    centerZoomedOut
 
-        <Routes >
-        <Route path = "/" element={
-          <Floor
-              floorMap={floors[+floor -1].floorMap}
-              number={floor}
-              refFloor={floors[+floor-1].ref}
-              regions={floors[+floor -1].regions}
-          />
-        }
-             />
-      </Routes>
+>
+        {({ zoomIn, zoomOut, resetTransform, zoomToElement, ...rest }:any) => (
+            <React.Fragment>
+                <div
+                  className={"map"}
+                >
 
-      </div>
+
+                <TransformComponent
+                    wrapperStyle = {{
+                            width: "100%",
+                            height: "100%"
+                        }}
+                        >
+                    <Floor floorMap={floors[+floor -1].floorMap}
+                             number={floor}
+                             refFloor={floors[+floor-1].ref}
+                             regions={floors[+floor -1].regions}
+                    />
+                </TransformComponent>
+                    <div className={"mapControls"}>
+                        <MapControl zoomIn ={zoomIn} zoomOut = {zoomOut} resetTransform = {resetTransform}/>
+                    </div>
+                    <div className={"sideMenu"}>
+                        <FloorControls floors={floors}/>
+                        <RegionsControls zoomToElement = {zoomToElement} floors={floors}/>
+                    </div>
+                </div>
+            </React.Fragment>
+        )}
+
+      {/*</div>*/}
+    </TransformWrapper>
   );
 }
 
