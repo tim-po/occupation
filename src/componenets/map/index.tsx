@@ -1,5 +1,5 @@
 import "./index.scss";
-import React, {createRef, useRef, useState} from "react";
+import React, {createRef, useEffect, useRef, useState} from "react";
 import FloorControls from "../controls/FloorControls";
 import Floor from "../floor/Floor";
 import MapControl from "../controls/mapControl";
@@ -19,13 +19,11 @@ type CampusMapProps = {
 }
 
 // CampusMap
-function Map({ campusName,
-               // mapHeight,
-               floors,
-               }: CampusMapProps) {
+function Map({floors}: CampusMapProps) {
   const [zoom, setZoom] = useState(1)
   const mapHeight = window.innerHeight;
-  const [searchParams]= useSearchParams()
+  const [searchParams] = useSearchParams()
+  const canvasRef = React.createRef<HTMLDivElement>()
   const floor = searchParams.get('floor') || '1'
 
     return (
@@ -47,7 +45,7 @@ function Map({ campusName,
         {({ zoomIn, zoomOut, resetTransform, zoomToElement, ...rest }:any) => (
             <React.Fragment>
                 <div
-                  className={"map"}
+                  className={"mapContainer"}
                 >
                     <Floor floorMap={floors[+floor -1].floorMap}
                              number={floor}

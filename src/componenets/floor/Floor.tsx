@@ -1,4 +1,4 @@
-import React, { RefObject} from "react";
+import React, {RefObject} from "react";
 import "./floor.scss";
 import SVG from 'react-inlinesvg';
 
@@ -7,11 +7,12 @@ import {useSearchParams} from "react-router-dom";
 import {TransformComponent} from "react-zoom-pan-pinch";
 
 type FloorProps = {
-    number: string,
-    regions: Region[],
-    refFloor: RefObject<HTMLDivElement>,
-    floorMap: MapObject,
+  number: string,
+  regions: Region[],
+  refFloor: RefObject<HTMLDivElement>,
+  floorMap: MapObject,
 }
+
 const Floor = ({number, regions, refFloor, floorMap}: FloorProps) => {
     const css = {
         background: `url("${floorMap.src}")`,
